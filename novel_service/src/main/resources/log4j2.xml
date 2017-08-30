@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <RollingFile name="file" fileName="${sys:logPath}/hot-news.log"
+                     filePattern="${sys:logPath}/hot-news_%d{MM-dd-yyyy}.log">
+            <PatternLayout>
+                <Pattern>%d{dd HH:mm:ss} [%-5p] [%.15t] %c{1.} : %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="14"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="file"/>
+        </Root>
+    </Loggers>
+</Configuration>

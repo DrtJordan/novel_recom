@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <RollingFile name="file" fileName="${sys:logPath}/hot-news.log"
+                     filePattern="${sys:logPath}/hot-news_%d{MM-dd-yyyy}.log">
+            <PatternLayout>
+                <!--<Pattern>%d{dd HH:mm:ss} [%-5p] [%.15t] %c{1.} : %m%n</Pattern>-->
+                <Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level %c{1.}:%L - %msg%n}{%throwable{short.fileName}}{FATAL=white,
+                    ERROR=red, WARN=blue, INFO=black, DEBUG=green, TRACE=blue}
+                </Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="14"/>
+        </RollingFile>
+
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <!--<PatternLayout pattern="%d %-5p [%5t] %c{1.} (%F:%L): %m%n"/>-->
+            <PatternLayout>
+                <Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level %c{1.}:%L - %msg%n}{%throwable{short.fileName}}{FATAL=white,
+                    ERROR=red, WARN=blue, INFO=black, DEBUG=green, TRACE=blue}
+                </Pattern>
+            </PatternLayout>
+
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+</Configuration>
